@@ -1,0 +1,40 @@
+import React, { useState } from "react";
+
+const SendMessageToGroup = () => {
+  const [groupId, setGroupId] = useState("");
+  const [message, setMessage] = useState("");
+
+  const handleSendMessage = async () => {
+    const response = await fetch(`/chat/groups/${groupId}/send-message`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ message }),
+    });
+    if (response.ok) {
+      setMessage("");
+      alert("Message sent to the group");
+    }
+  };
+
+  return (
+    <div>
+      <h2>Send Message to Group</h2>
+      <input
+        type="text"
+        placeholder="Group ID"
+        value={groupId}
+        onChange={(e) => setGroupId(e.target.value)}
+      />
+      <textarea
+        placeholder="Type your message here"
+        value={message}
+        onChange={(e) => setMessage(e.target.value)}
+      />
+      <button onClick={handleSendMessage}>Send Message</button>
+    </div>
+  );
+};
+
+export default SendMessageToGroup;
