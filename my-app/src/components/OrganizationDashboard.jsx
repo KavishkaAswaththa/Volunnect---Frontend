@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
-import "./OrganizationDashboard.css";
+import "../styles/OrganizationDashboard.css";
 
 const OrganizationDashboard = () => {
   const [events, setEvents] = useState({
@@ -18,32 +18,38 @@ const OrganizationDashboard = () => {
   // Fetch events from the backend
   const fetchEvents = async () => {
     try {
-      const { data } = await axios.get("http://localhost:8081/api/v1/event/getall");
+      const { data } = await axios.get("http://localhost:8080/api/v1/event/getall");
       const now = new Date();
 
-      // Correct filtering logic for upcoming, ongoing, and completed events
+      // Update the event status based on the current date
+      const updatedEvents = data.map((event) => {
+        const eventStartTime = new Date(event.startDate);
+        const eventEndTime = new Date(event.endDate);
+        
+        if (eventStartTime <= now && eventEndTime >= now) {
+          event.status = "ongoing"; // Mark event as ongoing
+        } else if (eventEndTime < now) {
+          event.status = "completed"; // Mark event as completed
+        } else {
+          event.status = "upcoming"; // Otherwise, it remains upcoming
+        }
+        return event;
+      });
+
       setEvents({
-        upcoming: data.filter((event) => new Date(event.eventDate) > now),
-        ongoing: data.filter(
-          (event) => {
-            const eventStartTime = new Date(`${event.startDate}T${event.startTime}`);
-            const eventEndTime = new Date(`${event.endDate}T${event.endTime}`);
-            return eventStartTime <= now && eventEndTime >= now;
-          }
-        ),
-        completed: data.filter((event) => {
-          const eventEndTime = new Date(`${event.endDate}T${event.endTime}`);
-          return eventEndTime < now;
-        }),
+        upcoming: updatedEvents.filter((event) => event.status === "upcoming").sort((a, b) => new Date(a.startDate) - new Date(b.startDate)),
+        ongoing: updatedEvents.filter((event) => event.status === "ongoing").sort((a, b) => new Date(a.startDate) - new Date(b.startDate)),
+        completed: updatedEvents.filter((event) => event.status === "completed").sort((a, b) => new Date(b.endDate) - new Date(a.endDate)),
       });
 
       // Highlight dates for the calendar view
       const dates = data.map((event) =>
-        new Date(event.eventDate).toISOString().split("T")[0]
+        new Date(event.startDate).toISOString().split("T")[0]
       );
-      setHighlightedDates(dates); // Set the highlighted dates based on the fetched events
+      setHighlightedDates(dates);
     } catch (error) {
       console.error("Error fetching events:", error);
+      alert("Failed to fetch events. Please try again later.");
     }
   };
 
@@ -52,41 +58,35 @@ const OrganizationDashboard = () => {
     const newEvent = {
       title: "New Event",
       description: "Description of the new event",
-      eventDate: selectedDate || new Date().toISOString(),
       startDate: selectedDate || new Date().toISOString(),
       endDate: selectedDate || new Date().toISOString(),
       location: "New Location",
     };
 
     try {
-      // Make an API call to save the event
-      const response = await axios.post("http://localhost:8081/api/v1/event/save", newEvent);
-      console.log("Event added successfully", response);  // Log the response
+      const response = await axios.post("http://localhost:8080/api/v1/event/save", newEvent);
 
       const addedEvent = response.data;
 
-      // Update state to include the newly added event
-      setEvents((prevEvents) => {
-        const updatedUpcoming = [...prevEvents.upcoming, addedEvent];
-        return {
-          ...prevEvents,
-          upcoming: updatedUpcoming,
-        };
-      });
+      setEvents((prevEvents) => ({
+        ...prevEvents,
+        upcoming: [...prevEvents.upcoming, addedEvent],
+      }));
 
-      // Add the new event's date to the highlighted dates
       setHighlightedDates((prevDates) => {
         const newHighlightedDates = [...prevDates, selectedDate];
-        return Array.from(new Set(newHighlightedDates)); // Remove duplicates
+        return Array.from(new Set(newHighlightedDates));
       });
 
-      // Alert user that the event was added
       alert("Event added successfully!");
-      navigate("/eventform", { state: { newEvent: newEvent } });
-
+      navigate("/eventform", { state: { newEvent } });
     } catch (error) {
       console.error("Error adding event:", error);
-      alert(`Failed to add the event. Error: ${error.response ? error.response.data.message : error.message}`);
+      alert(
+        `Failed to add the event. Error: ${
+          error.response ? error.response.data.message : error.message
+        }`
+      );
     }
   };
 
@@ -126,10 +126,10 @@ const OrganizationDashboard = () => {
             <h5><b>Ongoing Events</b></h5>
             <p>{events.ongoing.length} events</p>
           </Link>
-          <div className="category-card">
+          <Link className="category-card" to="/completed-events">
             <h5><b>Completed Events</b></h5>
             <p>{events.completed.length} events</p>
-          </div>
+          </Link>
         </div>
 
         <Calendar
@@ -141,10 +141,10 @@ const OrganizationDashboard = () => {
             let className = "";
             if (view === "month") {
               if (highlightedDates.includes(formattedDate)) {
-                className = "highlighted"; // Add highlighted class if the date is part of the event dates
+                className = "highlighted";
               }
               if (formattedDate === selectedDate) {
-                className = "selected"; // Add a separate class for the selected date
+                className = "selected";
               }
             }
             return className;
@@ -173,7 +173,8 @@ const OrganizationDashboard = () => {
               <div className="event-card-content">
                 <h5>{event.title}</h5>
                 <p>{event.description}</p>
-                <p>Date: {new Date(event.eventDate).toLocaleDateString()}</p>
+                <p>Start Date: {new Date(event.startDate).toLocaleDateString()}</p>
+                <p>End Date: {new Date(event.endDate).toLocaleDateString()}</p>
                 <p>Location: {event.location}</p>
               </div>
             </Link>

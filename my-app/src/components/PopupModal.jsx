@@ -1,5 +1,5 @@
 import React from 'react';
-import './PopupModal.css'; // Add the CSS for modal here
+import '../styles/PopupModal.css'; // Add the CSS for modal here
 
 const PopupModal = ({ isOpen, onClose, title, children }) => {
     if (!isOpen) return null;

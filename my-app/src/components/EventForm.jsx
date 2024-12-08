@@ -1,22 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import "./EventForm.css";
+import "../styles/EventForm.css";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css"; // Import DatePicker's CSS
 
 const EventForm = ({ addEventToUpcoming }) => {
   const [eventDetails, setEventDetails] = useState({
     title: '',
-    eventDate: '',
+    startDate: '',
+    endDate: '',
     description: '',
     location: '',
     type: '',
-    skills: '',
+    req_skills: '',
     otherSkills: '',
-    regDeadline: '',
-    shifts: [{ shiftTitle: '', shiftDescription: '', startTime: '', endTime: '', volunteerCount: 0 }],
-    image: null
+    reg_Deadline: '',
   });
 
   const navigate = useNavigate();
@@ -29,7 +28,8 @@ const EventForm = ({ addEventToUpcoming }) => {
       const selectedDate = new Date(location.state.selectedDate);
       setEventDetails((prevState) => ({
         ...prevState,
-        eventDate: selectedDate
+        startDate: selectedDate,
+        endDate: selectedDate
       }));
     }
   }, [location.state?.selectedDate]);
@@ -42,35 +42,17 @@ const EventForm = ({ addEventToUpcoming }) => {
     }));
   };
 
-  const handleDateChange = (date) => {
+  const handleStartDateChange = (date) => {
     setEventDetails((prevState) => ({
       ...prevState,
-      eventDate: date
+      startDate: date
     }));
   };
 
-  const handleShiftChange = (index, e) => {
-    const { name, value } = e.target;
-    const updatedShifts = [...eventDetails.shifts];
-    updatedShifts[index][name] = value;
+  const handleEndDateChange = (date) => {
     setEventDetails((prevState) => ({
       ...prevState,
-      shifts: updatedShifts
-    }));
-  };
-
-  const addShift = () => {
-    setEventDetails((prevState) => ({
-      ...prevState,
-      shifts: [...prevState.shifts, { shiftTitle: '', shiftDescription: '', startTime: '', endTime: '', volunteerCount: 0 }]
-    }));
-  };
-
-  const removeShift = (index) => {
-    const updatedShifts = eventDetails.shifts.filter((_, i) => i !== index);
-    setEventDetails((prevState) => ({
-      ...prevState,
-      shifts: updatedShifts
+      endDate: date
     }));
   };
 
@@ -92,33 +74,21 @@ const EventForm = ({ addEventToUpcoming }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const invalidShift = eventDetails.shifts.find(shift => !shift.shiftTitle || !shift.startTime || !shift.endTime || shift.volunteerCount <= 0);
-    if (invalidShift) {
-      alert('Please fill out all shift details correctly!');
-      return;
-    }
-
     const eventData = {
       title: eventDetails.title,
-      eventDate: eventDetails.eventDate,
+      startDate: eventDetails.startDate,
+      endDate: eventDetails.endDate,
       description: eventDetails.description,
       location: eventDetails.location,
       type: eventDetails.type,
       skills: eventDetails.skills,
       otherSkills: eventDetails.otherSkills,
       regDeadline: eventDetails.regDeadline,
-      shifts: eventDetails.shifts.map(shift => ({
-        title: shift.shiftTitle,
-        description: shift.shiftDescription,
-        startTime: shift.startTime,
-        endTime: shift.endTime,
-        volunteerCount: shift.volunteerCount
-      })),
       image: eventDetails.image
     };
 
     try {
-      const response = await axios.post('http://localhost:8081/api/v1/event/save', eventData, {
+      const response = await axios.post('http://localhost:8080/api/v1/event/save', eventData, {
         headers: { 'Content-Type': 'application/json' }
       });
       addEventToUpcoming(eventData);
@@ -150,11 +120,22 @@ const EventForm = ({ addEventToUpcoming }) => {
       </div>
 
       <div className="mb-3">
-        <label htmlFor="eventDate" className="form-label">Event Date:</label>
+        <label htmlFor="startDate" className="form-label">Start Date:</label>
         <DatePicker
-          selected={eventDetails.eventDate}
-          onChange={handleDateChange}
-          className={`form-control ${eventDetails.eventDate ? 'selected-date' : ''}`}
+          selected={eventDetails.startDate}
+          onChange={handleStartDateChange}
+          className={`form-control ${eventDetails.startDate ? 'selected-date' : ''}`}
+          dateFormat="yyyy-MM-dd"
+          required
+        />
+      </div>
+
+      <div className="mb-3">
+        <label htmlFor="endDate" className="form-label">End Date:</label>
+        <DatePicker
+          selected={eventDetails.endDate}
+          onChange={handleEndDateChange}
+          className={`form-control ${eventDetails.endDate ? 'selected-date' : ''}`}
           dateFormat="yyyy-MM-dd"
           required
         />
@@ -181,8 +162,8 @@ const EventForm = ({ addEventToUpcoming }) => {
       </div>
 
       <div className="mb-3">
-        <label htmlFor="skills" className="form-label">Required Skills:</label>
-        <select id="skills" name="skills" value={eventDetails.skills} onChange={handleChange} className="form-select" required>
+        <label htmlFor="req_skills" className="form-label">Required Skills:</label>
+        <select id="req_skills" name="req_skills" value={eventDetails.req_skills} onChange={handleChange} className="form-select" required>
           <option value="">Select Skill</option>
           <option value="Leadership">Leadership</option>
           <option value="Communication">Communication</option>
@@ -193,7 +174,7 @@ const EventForm = ({ addEventToUpcoming }) => {
         </select>
       </div>
 
-      {eventDetails.skills === 'Other' && (
+      {eventDetails.req_skills === 'Other' && (
         <div className="mb-3">
           <label htmlFor="otherSkills" className="form-label">Other Skills:</label>
           <input type="text" id="otherSkills" name="otherSkills" value={eventDetails.otherSkills} onChange={handleChange} className="form-control" />
@@ -201,82 +182,9 @@ const EventForm = ({ addEventToUpcoming }) => {
       )}
 
       <div className="mb-3">
-        <label htmlFor="regDeadline" className="form-label">Registration Deadline:</label>
-        <input type="date" id="regDeadline" name="regDeadline" value={eventDetails.regDeadline} onChange={handleChange} className="form-control" required />
+        <label htmlFor="reg_Deadline" className="form-label">Registration Deadline:</label>
+        <input type="date" id="reg_Deadline" name="reg_Deadline" value={eventDetails.reg_Deadline} onChange={handleChange} className="form-control" required />
       </div>
-
-      <h3>Shifts</h3>
-      <table className="table table-bordered">
-        <thead>
-          <tr>
-            <th>Shift Title</th>
-            <th>Shift Description</th>
-            <th>Start Time</th>
-            <th>End Time</th>
-            <th>Volunteer Count</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {eventDetails.shifts.map((shift, index) => (
-            <tr key={index}>
-              <td>
-                <input
-                  type="text"
-                  name="shiftTitle"
-                  value={shift.shiftTitle}
-                  onChange={(e) => handleShiftChange(index, e)}
-                  className="form-control"
-                  required
-                />
-              </td>
-              <td>
-                <textarea
-                  name="shiftDescription"
-                  value={shift.shiftDescription}
-                  onChange={(e) => handleShiftChange(index, e)}
-                  className="form-control"
-                  required
-                />
-              </td>
-              <td>
-                <input
-                  type="time"
-                  name="startTime"
-                  value={shift.startTime}
-                  onChange={(e) => handleShiftChange(index, e)}
-                  className="form-control"
-                  required
-                />
-              </td>
-              <td>
-                <input
-                  type="time"
-                  name="endTime"
-                  value={shift.endTime}
-                  onChange={(e) => handleShiftChange(index, e)}
-                  className="form-control"
-                  required
-                />
-              </td>
-              <td>
-                <input
-                  type="number"
-                  name="volunteerCount"
-                  value={shift.volunteerCount}
-                  onChange={(e) => handleShiftChange(index, e)}
-                  className="form-control"
-                  required
-                />
-              </td>
-              <td>
-                <button type="button" onClick={() => removeShift(index)} className="btn btn-danger">Remove</button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-      <button type="button" onClick={addShift} className="btn btn-primary mb-3">Add Shift</button>
 
       <button type="submit" className="btn btn-success">Save Event</button>
     </form>
