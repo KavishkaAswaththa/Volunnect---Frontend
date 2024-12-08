@@ -1,35 +1,39 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-function App() {
-  const [count, setCount] = useState(0)
+// Import components
+import EventForm from './event_component/EventForm';
+import OrganizationDashboard from './event_component/OrganizationDashboard';
+import UpcomingEvent from './event_component/UpcomingEvent';
+import OngoingEvent from './event_component/OngoingEvent';
+import CompletedEvent from './event_component/CompletedEvent';
+import UpcomingDetail from './event_component/UpcomingDetail';
+import PopupModal from './event_component/PopupModal';
+
+
+const App = () => {
+  const [upcomingEvents, setUpcomingEvents] = useState([]);
+
+  const addEventToUpcoming = (event) => {
+    setUpcomingEvents([...upcomingEvents, event]);
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <Router>
+      <Routes>
+        <Route path="/" element={<OrganizationDashboard />} />
+        <Route path="/eventform" element={<EventForm addEventToUpcoming={addEventToUpcoming} />} />
+        {/* Route for all upcoming events */}
+        <Route path="/upcoming-events" element={<UpcomingEvent />} />
+        {/* Route for a specific upcoming event */}
+        <Route path="/upcoming-events/:id" element={<UpcomingDetail/>} />
+        <Route path="/ongoing-events" element={<OngoingEvent />} />
+        <Route path="/completed-events" element={<CompletedEvent />} />
+        <Route path="/popupmodal" element={<PopupModal />} />
+      </Routes>
+    </Router>
+  );
+};
 
-export default App
+export default App;
