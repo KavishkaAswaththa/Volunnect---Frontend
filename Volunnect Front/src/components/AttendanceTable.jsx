@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import "./AttendanceTable.css";
+import '../styles/AttendanceTable.css';
 
 
 function AttendanceTable() {
@@ -11,7 +11,7 @@ function AttendanceTable() {
   useEffect(() => {
     // Fetch data from the specified endpoint
     axios
-      .get("http://localhost:8080/api/attendances/67486ff6e7cebd602d0a2f2b")
+      .get("http://localhost:8080/api/attendances/A123")
       .then((response) => {
         const data = response.data;
         setEventName(data.eventName);
@@ -47,7 +47,7 @@ function AttendanceTable() {
     // Send the updated data to the backend
     axios
       .put(
-        "http://localhost:8080/api/attendances/67486ff6e7cebd602d0a2f2b",
+        "http://localhost:8080/api/attendances/A123",
         updatedAttendance
       )
       .then((response) => {
