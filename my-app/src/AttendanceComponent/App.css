@@ -1,0 +1,203 @@
+/* General reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f4f7fc;
+  color: #333;
+  min-height: 100vh;
+}
+
+/* Main container */
+.attendance-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  animation: fadeIn 0.8s ease;
+  background: linear-gradient(200deg, #f0acf3, #adaefb, #ff56ff); /* Purple gradient */
+  color: rgb(0, 0, 0);
+
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Header */
+h1 {
+  font-size: 2.5rem;
+  color:black;
+  margin-bottom: 20px;
+  letter-spacing: 1.2px;
+  animation: slideIn 1s ease-in-out;
+}
+
+@keyframes slideIn {
+  0% { opacity: 0; transform: translateY(-30px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Event section */
+.event-section {
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+}
+
+.event-section label {
+  font-size: 1.2rem;
+  margin-right: 10px;
+  color: #333;
+}
+
+.event-section input {
+  padding: 10px;
+  font-size: 1rem;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  transition: border 0.3s ease;
+  width: 200px;
+}
+
+.event-section input:focus {
+  border-color: #2a9df4;
+  outline: none;
+  box-shadow: 0 0 5px rgba(42, 157, 244, 0.5);
+}
+
+.load-button {
+  background-color: #f24a4a;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 8px;
+  border: none;
+  margin-left: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.load-button:hover {
+  background-color: #c43d3d;
+}
+
+/* Table */
+.attendance-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  border-radius: 8px;
+}
+
+.attendance-table th, .attendance-table td {
+  padding: 12px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+  border-radius: 3px;
+}
+
+.attendance-table th {
+  background-color: #2a9df4;
+  color: white;
+  text-transform: uppercase;
+  font-size: 1rem;
+}
+
+.attendance-table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.attendance-table tbody tr:hover {
+  background-color: #e1e7f0;
+  cursor: pointer;
+}
+
+/* Checkbox */
+input[type="checkbox"] {
+  transform: scale(2);
+  cursor: pointer;
+}
+
+input[type="checkbox"]:checked {
+  accent-color: #2a9df4;
+}
+
+/* Save button */
+.save-button {
+  background-color: #2a9df4;
+  color: white;
+  padding: 12px 30px;
+  font-size: 1.1rem;
+  border-radius: 10px;
+  border: none;
+  margin-top: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.save-button:hover {
+  background-color: #227dc7;
+  transform: scale(1.02);
+}
+
+.save-button:active {
+  transform: scale(0.98);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .attendance-container {
+    padding: 15px;
+  }
+
+  .event-section {
+    flex-direction: column;
+  }
+
+  .event-section label {
+    margin-bottom: 10px;
+  }
+
+  .attendance-table th, .attendance-table td {
+    font-size: 0.9rem;
+    padding: 10px 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 2rem;
+  }
+
+  .event-section input {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .attendance-table th, .attendance-table td {
+    font-size: 0.8rem;
+    padding: 8px;
+  }
+
+  .save-button {
+    width: 100%;
+  }
+}
