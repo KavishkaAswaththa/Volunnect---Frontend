@@ -1,0 +1,41 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background: linear-gradient(to right, #d4b2f8, #b5cdf9);
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  
+    .logo {
+      display: flex;
+      align-items: center;
+      font-size: 20px;
+      font-weight: bold;
+  
+      img {
+        height: 30px;
+        margin-right: 10px;
+      }
+    }
+  
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+  
+      li {
+        cursor: pointer;
+        transition: 0.3s;
+  
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  
+    .profile-icon img {
+      height: 30px;
+      border-radius: 50%;
+    }
+  }
+  

@@ -1,0 +1,30 @@
+.home {
+    .background {
+      height: 100vh;
+      background: linear-gradient(135deg, #d4b2f8, #b5cdf9);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  
+      .logo-section {
+        text-align: center;
+  
+        img {
+          height: 150px;
+          margin-bottom: 20px;
+        }
+  
+        h1 {
+          font-size: 48px;
+          font-weight: bold;
+        }
+  
+        p {
+          margin-top: 10px;
+          font-size: 16px;
+          font-style: italic;
+        }
+      }
+    }
+  }
+  
