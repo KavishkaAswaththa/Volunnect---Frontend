@@ -1,0 +1,91 @@
+/* Styles scoped to the AttendanceTable component */
+.attendance-table-container {
+  padding: 20px;
+}
+
+.attendance-table-container body {
+  background: linear-gradient(120deg, #a2d9ff, #ffb6e6);
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Wrapper styling */
+.attendance-table-container div {
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+  padding: 20px;
+  max-width: 80%;
+  margin: 20px auto;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Header */
+.attendance-table-container h2 {
+  text-align: center;
+  color: #3a3d98;
+  font-size: 24px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+/* Table styling */
+.attendance-table-container table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.attendance-table-container thead {
+  background-color: #81b3ff;
+  color: white;
+}
+
+.attendance-table-container th,
+.attendance-table-container td {
+  padding: 10px;
+  border: 1px solid #e3e3e3;
+  text-align: center;
+}
+
+.attendance-table-container th {
+  font-size: 16px;
+}
+
+.attendance-table-container tr:nth-child(even) {
+  background-color: #fff5f5;
+}
+
+.attendance-table-container tr:nth-child(odd) {
+  background-color: #a3a4c961;
+}
+
+/* Checkboxes styling */
+.attendance-table-container input[type="checkbox"] {
+  transform: scale(1.2);
+  accent-color: #3a3d98;
+}
+
+/* Hover effect for rows */
+.attendance-table-container tbody tr:hover {
+  background-color: rgba(255, 183, 251, 0.37);
+  transition: background-color 0.3s ease;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .attendance-table-container div {
+    max-width: 95%;
+    padding: 15px;
+  }
+
+  .attendance-table-container h2 {
+    font-size: 20px;
+  }
+
+  .attendance-table-container th,
+  .attendance-table-container td {
+    font-size: 14px;
+    padding: 8px;
+  }
+}
