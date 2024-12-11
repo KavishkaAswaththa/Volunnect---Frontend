@@ -1,0 +1,142 @@
+/* Modal Overlay */
+.modal-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Dimmed background */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.modal-overlay.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Form Box */
+.form-box {
+  background-image: url("../assets/user images/formbgnd.jpg");
+  background-size: cover; /* Make the image cover the entire area */
+  background-position: center; /* Center the background image */
+  background-repeat: no-repeat; /* Ensure the image doesn't repeat */
+  width: 400px;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  transform: scale(0.8); /* Start smaller for pop-up effect */
+  transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center content horizontally */
+  justify-content: center; /* Center content vertically */
+  gap: 20px; /* Space between elements */
+}
+
+.modal-overlay.show .form-box {
+  transform: scale(1);
+}
+
+/* Form Title */
+.form-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 17px;
+  text-align: center;
+  color: #333;
+}
+
+/* Input Container */
+.input-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Align labels to the left */
+  gap: 5px; /* Space between label and input */
+}
+
+.form-label {
+  font-weight: bold;
+  font-size: 14px;
+  color: #555;
+}
+
+.form-input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Submit Button */
+.form-button {
+  padding: 10px 20px; /* Adjust padding for better appearance */
+  background-color: #b0b4ff;
+  color: black;
+  border: 1px solid #232222;
+  border-radius: 30px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 150px;
+
+  display: block; /* Ensures it behaves like a block element */
+  margin: 20px auto 0; /* Centers the button horizontally */
+  text-align: center; /* Aligns the text inside the button */
+}
+
+.form-button:hover {
+  background-color: #0056b3;
+}
+
+/* Footer Links */
+.form-footer {
+  text-align: center;
+  font-size: 14px;
+}
+
+.form-footer a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.form-footer a:hover {
+  text-decoration: underline;
+}
+
+.input-error {
+  border-color: red;
+}
+
+.error-message {
+  color: red;
+  font-size: 0.9rem;
+  margin-top: 4px;
+}
+
+/* Set the background for the whole container */
+.background-container {
+  background-image: url("../assets/user images/backgroundk.jpg"); /* Path to your image */
+  background-size: cover; /* Make the image cover the entire area */
+  background-position: center; /* Center the background image */
+  background-repeat: no-repeat; /* Ensure the image doesn't repeat */
+  min-height: 100vh; /* Ensure the container takes up the full viewport height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
