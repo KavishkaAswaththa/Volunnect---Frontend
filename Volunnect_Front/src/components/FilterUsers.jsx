@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from "react-router-dom";
-import './FilterUsers.css';
-import { BASE_URL } from '../../services/api';
+import '../styles/FilterUsers.css';
+import { BASE_URL } from '../services/api';
 
 const FilterUsers = () => {
     const { eventId } = useParams();
