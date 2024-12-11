@@ -12,7 +12,7 @@
 
 /* Title of the form */
 .form-titlelogin {
-  font-size: 24px;
+  font-size: 40px;
   font-weight: bold;
   margin-bottom: 75px;
   color: #000000;
@@ -32,7 +32,7 @@
   padding: 10px 40px 10px 35px; /* Space for the icon */
   border: 1px solid #232222;
   border-radius: 15px;
-  font-size: 14px;
+  font-size: 20px;
   outline: none;
   background-color: white;
   color: black;
@@ -50,7 +50,7 @@
   border: 1px solid #232222;
   border-radius: 30px;
   padding: 10px 20px;
-  font-size: 16px;
+  font-size: 20px;
   font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s ease;
@@ -65,7 +65,7 @@
 /* Footer text and links */
 .form-footer {
   margin-top: 10px;
-  font-size: 14px;
+  font-size: 25px;
   color: #333333;
 }
 
@@ -80,7 +80,7 @@
 }
 
 .form-label {
-  font-size: 14px;
+  font-size: 25px;
   font-weight: bold;
   margin-bottom: 5px;
   color: #333;
