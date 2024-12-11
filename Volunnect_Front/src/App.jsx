@@ -5,6 +5,8 @@ import LoginForm from "./components/LoginForm";
 import SignUpForm from "./components/SignupForm";
 import ResetPasswordForm from "./components/ResetPasswordForm";
 import UpdatePasswordForm from "./components/UpdatePasswordForm";
+//import FilterEvents from "./components/FilterEvents";
+//import FilterUsers from "./components/FilterUsers";
 import Home from "./components/Home"; // Create a Home component
 
 
@@ -19,6 +21,7 @@ function App() {
         <Route path="/signup" element={<SignUpForm />} />
         <Route path="/reset-password" element={<ResetPasswordForm />} />
         <Route path="/update-password" element={<UpdatePasswordForm />} />
+
       </Routes>
     </Router>
   );
