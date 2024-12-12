@@ -1,0 +1,185 @@
+.organizationDashboard {
+  padding: 25px;
+  font-family: Arial, sans-serif;
+}
+
+h3 {
+  font-family: cursive;
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.topSection {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.categories {
+  display: flex;
+  gap: 15px;
+  width: 50%;
+}
+
+.categoryCard {
+  flex: 1;
+  padding: 15px;
+  background: linear-gradient(145deg, #ff6fe9, #95dfff, #d56cff);
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 4, 8, 0.1);
+  text-align: center;
+  color: black;
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 50%;
+  text-decoration: none;
+}
+
+.categoryCard:hover {
+  margin-bottom: 5px;
+  margin-top: 5px;
+  color: #45033d;
+  background-color: rgb(0, 0, 0);
+}
+
+.calendar {
+  padding: 4px;
+  background: #e4eefa;
+  border: 1px solid #9b1414;
+  border-radius: 8px;
+  max-width: 40%;
+  color: #000000;
+}
+
+/* Highlighting specific dates for events */
+.react-calendar__tile.highlighted {
+  background-color: #d3e4ff; /* Light Blue for highlighted dates */
+  color: rgb(131, 0, 167);
+  border-radius: 10%;
+}
+
+.react-calendar__tile.selected {
+  background-color: #ff6fe9; /* Highlight selected date */
+  color: white;
+}
+
+/* Flex layout for Ongoing and Upcoming Events */
+.ongoingEvents {
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-left: 20px;
+  margin-top: 20px;
+  background-color: #ca93de;
+  height: 100%;
+  width: 50%;
+}
+
+
+
+.eventRow {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.eventsCard {
+  display: flex;
+  flex-direction: column;
+  background-color: #eccffc;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-decoration: none;
+}
+
+.eventsCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 10px rgba(201, 43, 43, 0.2);
+  
+}
+
+.eventCardContent {
+  padding: 10px;
+  color: inherit;
+  text-decoration: none;
+}
+
+.addEventBtn {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: hsl(227, 100%, 90%);
+  color: rgb(0, 0, 0);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: cursive, sans-serif;
+  font-size: 16px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 50%;
+  text-align: center;
+}
+
+.addEventBtn a {
+  color: #797979; /* Change this to the desired color */
+  text-decoration: none; /* Remove underline */
+  font-weight: bold; /* Keep the bold style */
+  transition: color 0.3s ease;
+}
+
+.addEventBtn a:hover {
+  color: #0056b3; /* Change this to the color you want on hover */
+}
+
+
+.addEventBtn:hover {
+  background-color: #45a049;
+}
+
+.addEventButtonContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  padding: 5px;
+}
+
+
+
+
+
+.upcomingEvents {
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-left: 20px;
+  margin-top: 20px;
+  background-color: #f4d5ff;
+  height: 100%;
+  width: 30%;/* Automatically adjusts based on content */
+}
+
+/* Styles for event cards inside the upcoming section */
+.eventCardContent {
+  padding: 15px;
+  background-color: #e8f7ff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-decoration: none;
+}
+
+.eventCardContent:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+
+.highlighted {
+  background-color: #b6d1fa; /* Highlight color */
+  border-radius: 5%;
+  color: rgb(164, 16, 130);
+}

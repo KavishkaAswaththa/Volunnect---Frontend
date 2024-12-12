@@ -1,0 +1,59 @@
+.volunteerDashboard {
+    padding: 20px;
+  }
+  
+  .topSection {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .categories {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .categoryCard {
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+  }
+  
+  .calendar {
+    width: 300px;
+  }
+  
+  .highlightDate {
+    background-color: lightblue;
+    border-radius: 5px;
+  }
+  
+  .selected {
+    background-color: lightgreen;
+    border-radius: 5px;
+  }
+  
+  .ongoingEvents,
+  .upcomingEvents {
+    margin-top: 20px;
+  }
+  
+  .eventRow {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .eventsCard {
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .eventCardContent {
+    text-align: center;
+  }
