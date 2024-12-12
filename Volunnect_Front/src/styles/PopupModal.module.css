@@ -1,0 +1,62 @@
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(215, 54, 54, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30%;
+}
+
+.modal {
+    background-color: rgb(181, 55, 177);
+    padding: 20px;
+    box-sizing: border-box;
+    width: 100%; /* Default width */
+    
+    max-width: 100%; /* Max width for the modal */
+    box-shadow: 0 4px 10px rgba(112, 3, 110, 0.1);
+    display: flex;
+    flex-direction: column; /* Ensure content stretches vertically */
+}
+
+
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.modal-content {
+    margin-top: 20px;
+    width: 100%;
+    background-color: rgb(255, 226, 253);
+    padding: 0px; /* Increase padding to enlarge the content space */
+    box-sizing: border-box;
+    /* Optionally adjust width to make it larger */
+    width: 100; /* or 90% or another value based on your needs */
+    height: auto; /* Let the height adjust based on the content */
+}
+
+.modal-dialog {
+    width: 100%;
+    background-color: rgb(126, 18, 113);
+}
+
+.modal.show.d-block {
+    background-color: rgba(239, 206, 247, 0.205);
+    padding: 0%;
+}
