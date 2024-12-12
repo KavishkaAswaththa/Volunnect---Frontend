@@ -18,7 +18,7 @@ function AttendanceTable() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8080/api/attendances/67599773cb5002547f564b01")
+      .get("http://localhost:8080/api/attendances/675a0a0d7c87635e5e31c0a9")
       .then((response) => {
         const data = response.data;
         setEventName(data.eventName);
@@ -75,7 +75,7 @@ function AttendanceTable() {
 
     axios
       .put(
-        "http://localhost:8080/api/attendances/67599773cb5002547f564b01",
+        "http://localhost:8080/api/attendances/675a0a0d7c87635e5e31c0a9",
         updatedAttendance
       )
       .then((response) => {
@@ -141,7 +141,7 @@ function AttendanceTable() {
         >
           <thead>
             <tr>
-              <th>Roll No</th>
+              <th>Volunteer ID</th>
               <th>Name</th>
               {columns.map((column, index) => (
                 <th key={index}>{column}</th>
@@ -233,7 +233,7 @@ function AttendanceTable() {
         }}
       >
         <h3>Analytical View</h3>
-        <p><strong>Total Students:</strong> {totalStudents}</p>
+        <p><strong>Total Volunteers:</strong> {totalStudents}</p>
         <p><strong>Total Attendance Days:</strong> {totalAttendanceDays}</p>
         <p><strong>Average Attendance Percentage:</strong> {averageAttendancePercentage}%</p>
         <p><strong>Total Uploaded Files:</strong> {totalUploadedFiles}</p>

@@ -78,12 +78,12 @@ function CreateAttendance() {
       <h2 className={styles.title}>Request Attendance</h2>
 
       <div className={styles.formGroup}>
-        <label className={styles.label}>Event Name:</label>
+        <label className={styles.label}>Event ID:</label>
         <input
           type="text"
           value={eventName}
           onChange={(e) => setEventName(e.target.value)}
-          placeholder="Enter event name"
+          placeholder="Enter event id"
           className={styles.input}
         />
       </div>
@@ -117,21 +117,21 @@ function CreateAttendance() {
       </div>
 
       <div className={styles.formGroup}>
-        <h3 className={styles.subtitle}>Students</h3>
+        <h3 className={styles.subtitle}>Volunteers</h3>
         {students.map((student, index) => (
           <div key={index} className={styles.studentRow}>
-            <label className={styles.label}>Roll No: {student.roll}</label>
+            <label className={styles.label}>Volunteer ID: {student.roll}</label>
             <input
               type="text"
               value={student.name}
               onChange={(e) => handleStudentChange(index, "name", e.target.value)}
-              placeholder="Enter student name"
+              placeholder="Enter Volunteer name"
               className={styles.input}
             />
           </div>
         ))}
         <button onClick={handleAddStudent} className={styles.button}>
-          Add Student
+          Add Volunteer
         </button>
       </div>
 

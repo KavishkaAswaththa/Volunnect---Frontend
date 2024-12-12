@@ -11,7 +11,7 @@ const AttendanceFileUpload = () => {
   const [message, setMessage] = useState("");
 
   const handleFileUpload = async () => {
-    if (!file || !volunteerId || !eventId || !day) {
+    if (!file || !volunteerId || !eventId ) {
       setMessage("All fields are required!");
       return;
     }
@@ -75,7 +75,7 @@ const AttendanceFileUpload = () => {
   };
 
   const handleMetadataUpdate = async () => {
-    if (!fileId || !volunteerId || !eventId || !day) {
+    if (!fileId || !volunteerId || !eventId ) {
       setMessage("All fields are required for updating metadata!");
       return;
     }
@@ -93,7 +93,7 @@ const AttendanceFileUpload = () => {
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>File Management</h1>
+      <h1 className={styles.title}>Upload Your Work</h1>
 
       <h2 className={styles.subtitle}>Upload File</h2>
       <input type="file" onChange={(e) => setFile(e.target.files[0])} className={styles.input} />
@@ -111,13 +111,7 @@ const AttendanceFileUpload = () => {
         onChange={(e) => setEventId(e.target.value)}
         className={styles.input}
       />
-      <input
-        type="text"
-        placeholder="Day"
-        value={day}
-        onChange={(e) => setDay(e.target.value)}
-        className={styles.input}
-      />
+      
       <button onClick={handleFileUpload} className={styles.button}>Upload</button>
 
       <h2 className={styles.subtitle}>Update Metadata</h2>
@@ -135,13 +129,7 @@ const AttendanceFileUpload = () => {
         onChange={(e) => setEventId(e.target.value)}
         className={styles.input}
       />
-      <input
-        type="text"
-        placeholder="Day"
-        value={day}
-        onChange={(e) => setDay(e.target.value)}
-        className={styles.input}
-      />
+      
       <button onClick={handleMetadataUpdate} className={styles.button}>Update Metadata</button>
 
       <h2 className={styles.subtitle}>Download File</h2>
