@@ -1,0 +1,67 @@
+/* Container Styles */
+.container {
+  margin: 20px auto;
+  padding: 20px;
+  max-width: 50%;
+  font-family: Arial, sans-serif;
+}
+
+/* Heading */
+.heading {
+  text-align: center;
+  color: #6b049b;
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+/* Event Card */
+.eventCard {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  text-decoration: none;
+  background-color: #f3ddff;
+  border: 1px solid #000000;
+  border-radius: 10px;
+  box-shadow: 0 8px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  color: #000000;
+  margin-top: 5%;
+}
+
+.eventCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Card Content */
+.cardContent {
+  padding: 15px;
+}
+
+.cardContent h5 {
+  color: #7e00a4;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.cardContent p {
+  margin: 5px 0;
+  font-size: 1rem;
+  color: #230202;
+}
+
+/* End Date Styling */
+.cardContent p:last-of-type {
+  font-weight: bold;
+  color: #402941;
+}
+
+/* Empty State */
+.emptyState {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #c05656;
+  margin-top: 20px;
+}

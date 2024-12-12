@@ -1,0 +1,9 @@
+/* General Form Styling */
+.container {
+    background-color: #f6e9f8;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+    max-width: 60%;
+    margin: 0 auto;
+}
