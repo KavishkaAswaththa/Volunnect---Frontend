@@ -91,7 +91,7 @@ const EventForm = ({ addEventToUpcoming }) => {
       const response = await axios.post('http://localhost:8080/api/v1/event/save', eventData, {
         headers: { 'Content-Type': 'application/json' }
       });
-      addEventToUpcoming(eventData);
+      //addEventToUpcoming(eventData);
       alert('Event saved successfully!');
       navigate("/organization-dashboard");  // Navigate back to the dashboard after successful event creation
     } catch (error) {
